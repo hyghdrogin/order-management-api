@@ -13,6 +13,7 @@
     "generate": "prisma generate",
     "migrate": "prisma migrate deploy",
     "migrate:dev": "prisma migrate dev",
+    "seed": "ts-node src/seeders/seeders.ts",
     "postinstall": "yarn build"
   },
   "dependencies": {
