@@ -1,8 +1,8 @@
 -- CreateTable
 CREATE TABLE `Orders` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `email` INTEGER NOT NULL,
-    `productName` INTEGER NOT NULL,
+    `email` VARCHAR(191) NOT NULL,
+    `productName` VARCHAR(191) NOT NULL,
     `quantity` INTEGER NOT NULL,
     `status` ENUM('pending', 'processing', 'canceled', 'shipping', 'delivered') NOT NULL DEFAULT 'pending',
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),

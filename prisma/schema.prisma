@@ -12,8 +12,8 @@ datasource db {
 
 model Orders {
   id          Int          @id @default(autoincrement())
-  email       Int
-  productName Int
+  email       String
+  productName String
   quantity    Int
   status      order_Status @default(pending)
   createdAt   DateTime     @default(now())
