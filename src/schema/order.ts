@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import Joi from "joi";
 import { OrderData } from "../utils";
 
@@ -18,4 +19,11 @@ export const validateOrder = (createOrder: OrderData) => {
     quantity: Joi.number().required(),
   });
   return order.validate(createOrder, options);
+};
+
+export const validateOrderUpdate = (orderStatus: string) => {
+  const orderSchema = Joi.object({
+    status: Joi.string().valid("canceled", "delivered"),
+  });
+  return orderSchema.validate(orderStatus, options);
 };

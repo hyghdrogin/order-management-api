@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
 import { Request, Response } from "express";
 import { errorMessage, handleError, successMessage } from "../utils";
-import { validateOrder } from "../schema/order";
+import { validateOrder, validateOrderUpdate } from "../schema/order";
 import { db } from "../models";
 
 export const createOrder = async (req: Request, res: Response) => {
@@ -12,7 +14,8 @@ export const createOrder = async (req: Request, res: Response) => {
     const order = await db.orders.create({
       data: { ...req.body },
     });
-    return successMessage(res, 201, "Order Created Successfully", order);
+    const { deleted: deletedProp, ...orderData } = order;
+    return successMessage(res, 201, "Order Created Successfully", orderData);
   } catch (error) {
     handleError(error, req);
     return errorMessage(res, 500, (error as Error).message);
@@ -49,8 +52,33 @@ export const readOrder = async (req: Request, res: Response) => {
     const order = await db.orders.findFirst({
       where: { id: Number(orderId) },
     });
-    if (!order) return errorMessage(res, 403, "Invalid Order");
-    return successMessage(res, 200, "Order Fetched Successfully", order);
+    if (!order) return errorMessage(res, 400, "Invalid Order");
+    const { deleted: deletedProp, ...orderData } = order;
+    return successMessage(res, 200, "Order Fetched Successfully", orderData);
+  } catch (error) {
+    handleError(error, req);
+    return errorMessage(res, 500, (error as Error).message);
+  }
+};
+
+export const updateOrder = async (req: Request, res: Response) => {
+  try {
+    const { orderId } = req.params;
+    const valid = validateOrderUpdate(req.body);
+    if (valid.error) {
+      return errorMessage(res, 400, valid.error.message);
+    }
+    const { status } = req.body;
+    const order = await db.orders.findFirst({
+      where: { id: Number(orderId) },
+    });
+    if (!order) return errorMessage(res, 400, "Invalid Order");
+    const updatedOrder = await db.orders.update({
+      where: { id: Number(orderId) },
+      data: { status },
+    });
+    const { deleted: deletedProp, ...orderData } = updatedOrder;
+    return successMessage(res, 200, "Order Updated Successfully", orderData);
   } catch (error) {
     handleError(error, req);
     return errorMessage(res, 500, (error as Error).message);
