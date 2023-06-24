@@ -84,3 +84,21 @@ export const updateOrder = async (req: Request, res: Response) => {
     return errorMessage(res, 500, (error as Error).message);
   }
 };
+
+export const deleteOrder = async (req: Request, res: Response) => {
+  try {
+    const { orderId } = req.params;
+    const order = await db.orders.findFirst({
+      where: { id: Number(orderId) },
+    });
+    if (!order) return errorMessage(res, 400, "Invalid Order");
+    const deletedOrder = await db.orders.update({
+      where: { id: Number(orderId) },
+      data: { deleted: true },
+    });
+    return successMessage(res, 200, "Order Deleted Successfully");
+  } catch (error) {
+    handleError(error, req);
+    return errorMessage(res, 500, (error as Error).message);
+  }
+};
