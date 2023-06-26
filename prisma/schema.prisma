@@ -23,8 +23,6 @@ model Orders {
 
 enum order_Status {
   pending
-  processing
   canceled
-  shipping
   delivered
 }

@@ -1,5 +1,8 @@
 ## Order Management Api
 
+## Definition Task
+- The .txt file containing the terms to define, their definition and explanation is in the src folder of the project
+
 ## Documentation
 
 - A detailed documentation of the api can be found here: [API Documentation](https://documenter.getpostman.com/view/21130368/2s93z6disH)
@@ -7,6 +10,7 @@
 ## Swagger documentation:
 
 - A Swagger documentation of this api can be found locally:
+
 - Run Project Locally
 
 - Clone the project
@@ -21,19 +25,21 @@
 
 ## Routes:
 
-There are 5 routes in this API endpoint:
+There are 6 routes in this API endpoint:
 
 - Create Order
   - POST request to "https://localhost:<port>/api/orders/"
   - PAYLOAD - { email, productName, quantity }
 - Read Orders
   - GET request to "https://localhost:<port>/api/orders/"
-- Read Order by Id
+- Read Order by Order Id
   - GET request to "https://localhost:<port>/api/orders/:orderId"
-- Update Order by Id
+- Read Order by Order Status
+  - GET request to "https://localhost:<port>/api/orders/status/:orderStatus"
+- Update Order by Order Id
   - PATCH request to "https://localhost:<port>/api/orders/:orderId"
   - PAYLOAD - { status }
-- Delete Order by Id
+- Delete Order by Order Id
   - DELETE request to "https://localhost:<port>/api/orders/:orderId"
 
 ## HTTP Request

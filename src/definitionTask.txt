@@ -1,0 +1,65 @@
+1). Caching:
+        Definition: Caching is like having a special storage space where you keep data that you use often so that you can access them quickly. 
+        Relatable explanation: Imagine you have a picture that you love to view and share whenever a pictureof you is asked for.
+Instead of searching through your photo library every time to get the picture, you keep a copy of it in your favorite folder.
+    This way, you can quickly grab the book whenever you want without a long search. Caching works similarly for computers.
+It keeps a copy of frequently used information close to the computer, making it faster to access without going to the main source every time.
+        Terminologies: Memcached, node-cache
+
+2). Message Queuing:
+        Definition: Messages are stored on the queue until they are processed and deleted.
+        Relatable explanation: Imagine you and your friend love to exchange notes during class may be a special code language note or gossip.
+Instead of interrupting the class by asking to direct the paper in your friend's direction, you can use a special box.
+You write the note, put it in the box, and your friend takes it from there. This way, you don't disturb the class and can continue learning.
+Message queuing is like that box. It helps in sending and receiving messages between different parts of a computer system without directly connecting them.
+        Terminologies: RabbitMq, message-queue
+
+3). Event-driven architecture:
+        Definition: Decoupled systems that run in response to events.
+        Relatable explanation: The siren when there is electricity supply in an area to notify the people that there is electricity supply.
+With an event-driven architecture, computer programs work similarly. They listen for special events or triggers and respond accordingly.
+It allows different parts of the program to communicate and take action when specific events occur.
+        Terminologies: AWS Lambda.
+
+4). Distributed systems: 
+        Definition: A distributed system is a system whose components are located on different networked computers, which communicate and coordinate their actions by passing messages to one another.
+        Relatable explanation: Gone are the days where children go out to play action games at a game house and skip school, Now everyone can join a Call Of Duty lobby at the same time and play like that are together.
+Distributed systems are like that. They allow computers in different places to work together as if they were connected in one big system.
+        Terminologies: Aache Cassandra
+
+5). Database Sharding:
+        Definition: Database Sharding is a method for distributing data across multiple machines.
+        Relatable explanation: Washing clothes of large quantity and wanting to arrange them in your box, you will not just place all the clothes together, you separate the boxers from the handkerchief and from the regular clothes fro easy accessibility when you need each piece.
+Database sharding is similar. When you have a large amount of data, you split it into smaller parts and store them in different places to make it easier and faster to find what you need.
+        Terminologies: MongoDB, PostgreSQL with table partitioning
+
+6). Multi-tenant database architecture:
+        Definition: multiple instances of an application operate in a shared environment.
+        Relatable explanation: Let's use the examle of a beach, there's a private beach and a general beach in the same vicinity. Everyone grooving at the beach but can not see what is happening in the private or public beach, even though in the same vicinity.
+Multi-tenant database architecture is like that beach. It allows many different people or groups to use the same database, but each one has their own separate space to store and access their information, keeping it private from others.
+        Terminologies: Microsoft Azure SQL Database
+
+7). Containerization and Orchestration:
+        Definition: Containerization is like having a special box that holds everything needed to run an application, including the code, libraries, and dependencies.
+                    Orchestration is like having a smart conductor who knows how to manage and coordinate a group of containers.
+        Relatable explanation: Let's look at lego blocks used to build different stuffs.
+Containerization is like those blocks. It helps in packing software and its dependencies together so they can be easily moved and run on different computers.
+Orchestration is like a special robot that knows how to assemble those lego blocks in the right order and make them work together smoothly.
+        Terminologies: Docker
+
+8). Microservices architecture:
+        Definition: Microservices allow a large application to be separated into smaller independent parts, with each part having its own realm of responsibility.
+        Relatable explanation: Imagine you and your friends are planning a big party. Instead of doing everything by yourself, you divide the tasks. One friend takes care of decorations, another friend handles music, and so on.
+Microservices architecture is similar. Instead of building one big program, it breaks it down into small, independent parts called microservices. Each microservice has its own specific task, and they work together to create a bigger and more complex system.
+        Terminologies: NodeJs, Python Flask, Java Spring Boot
+
+
+9). Serverless Architecture:
+        Definition: Serverless architecture is an approach to software design that allows developers to build and run services without having to manage the underlying infrastructure.
+        Relatable explanation: Imagine you want to have a delicious pizza without worrying about making it yourself.
+With serverless architecture, it's like having a magic pizza delivery service. You just tell them what kind of pizza you want, and they take care of making it and delivering it to you.
+In serverless architecture, you don't have to worry about managing servers or infrastructure. You focus on writing your code, and a special service takes care of running it for you.
+        Terminologies: AWS Lambda
+
+
+Note: These definitions and explanations are products of research, some of these I haven't used. Thanks.
