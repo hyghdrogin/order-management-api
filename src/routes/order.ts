@@ -6,6 +6,7 @@ import {
   readOrder,
   updateOrder,
   deleteOrder,
+  readOrdersByStatus,
 } from "../controllers/orders";
 
 const router = Router();
@@ -82,6 +83,29 @@ router.get("/", readOrders);
  *         description: Internal server error
  */
 router.get("/:orderId", readOrder);
+
+/**
+ * @swagger
+ * /api/orders/status/{orderStatus}:
+ *   get:
+ *     summary: Get an order by Order Status
+ *     tags: [Orders]
+ *     parameters:
+ *       - in: path
+ *         name: orderStatus
+ *         required: true
+ *         description: Status of the order
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Order fetched successfully
+ *       400:
+ *         description: Invalid order Status
+ *       500:
+ *         description: Internal server error
+ */
+router.get("/status/:orderStatus", readOrdersByStatus);
 
 /**
  * @swagger

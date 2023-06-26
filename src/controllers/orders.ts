@@ -1,9 +1,10 @@
+/* eslint-disable camelcase */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
 import { Request, Response } from "express";
 import { errorMessage, handleError, successMessage } from "../utils";
 import { validateOrder, validateOrderUpdate } from "../schema/order";
-import { db } from "../models";
+import { db, order_Status } from "../models";
 
 export const createOrder = async (req: Request, res: Response) => {
   try {
@@ -55,6 +56,45 @@ export const readOrder = async (req: Request, res: Response) => {
     if (!order) return errorMessage(res, 400, "Invalid Order");
     const { deleted: deletedProp, ...orderData } = order;
     return successMessage(res, 200, "Order Fetched Successfully", orderData);
+  } catch (error) {
+    handleError(error, req);
+    return errorMessage(res, 500, (error as Error).message);
+  }
+};
+
+export const readOrdersByStatus = async (req: Request, res: Response) => {
+  try {
+    const { page, pageSize } = req.query;
+    const { orderStatus }: { orderStatus?: order_Status } = req.params;
+    if (
+      orderStatus !== undefined &&
+      !Object.values(order_Status).includes(orderStatus)
+    ) {
+      return errorMessage(res, 400, "Invalid status");
+    }
+    const parsedPage = parseInt(page as string, 10) || 1;
+    const parsedPageSize = parseInt(pageSize as string, 10) || 5;
+
+    const skip = (parsedPage - 1) * parsedPageSize;
+    const orders = await db.orders.findMany({
+      where: { status: orderStatus },
+      take: parsedPageSize,
+      skip,
+    });
+    const totalOrdersCount = await db.orders.count({
+      where: { status: orderStatus },
+    });
+    return successMessage(
+      res,
+      200,
+      `${orderStatus} Orders Fetched Successfully`,
+      {
+        totalOrdersCount,
+        currentPage: parsedPage,
+        pageSize: parsedPageSize,
+        orders,
+      }
+    );
   } catch (error) {
     handleError(error, req);
     return errorMessage(res, 500, (error as Error).message);
